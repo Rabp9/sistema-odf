@@ -1,0 +1,81 @@
+.numeracion {
+    width: 25px;
+}
+
+.conectorfibra-descripcion {
+    width: 100px;
+    white-space: normal;
+    height: 200px;
+    padding: 5px;
+}
+
+.tipo1 {
+    color: #000;
+    background-color: #fff;
+    border-color: #000;
+}
+
+.tipo2 {
+    color: #000;
+    background-color: #FFFF00;
+    border-color: #000;
+}
+
+.tipo3 {
+    color: #fff;
+    background-color: #9933FF;
+    border-color: #fff;
+}
+
+.tipo4 {
+    color: #000;
+    background-color: #66FFFF;
+    border-color: #000;
+}
+
+.tipo5 {
+    color: #000;
+    background-color: #CC99FF;
+    border-color: #000;
+}
+
+.tipo6 {
+    color: #fff;
+    background-color: #FF0000;
+    border-color: #fff;
+}
+
+.tipo7 {
+    color: #ff;
+    background-color: #999;
+    border-color: #fff;
+}
+
+.tipo8 {
+    color: #000;
+    background-color: #92D050;
+    border-color: #000;
+}
+
+.id2 {
+    color: #FF0000;
+}
+
+td.tf-descripcion {
+    white-space: normal;
+    font-size: 15px;
+    background-color: #FABF8F;
+}
+
+td.tf-be {
+    background-color: #D8E4BC;
+    font-weight: bold;
+}
+
+td.tf-bc {
+    background-color: #FFC000;
+}
+
+td.tf-fb {
+    background-color: #D9D9D9;
+}

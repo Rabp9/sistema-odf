@@ -1,0 +1,40 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="812" measuredH="428" mockupW="450" mockupH="400">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="362" y="28" w="-1" h="-1" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Home%20-%20Sistema%20ODF%0Ahttp%3A//sistema-odf/home</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="362" y="99" w="450" h="46" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="-1"/>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Image" x="362" y="99" w="81" h="46" measuredW="77" measuredH="79" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Link" x="495" y="113" w="-1" h="-1" measuredW="28" measuredH="19" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>URD</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Link" x="538" y="113" w="-1" h="-1" measuredW="27" measuredH="19" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>ODF</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Link" x="587" y="113" w="-1" h="-1" measuredW="53" measuredH="19" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Usuarios</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::DataGrid" x="381" y="187" w="407" h="195" measuredW="351" measuredH="81" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>C%F3digo%20%5Ev%2C%20Descripci%F3n%20%5Ev%2C%20Regi%F3n%20%5Ev%2C%20Provincia%20%5Ev%20%0A%201%2C%20Huanchaco%20URD%2C%20La%20Libertad.%2C%20Trujillo%0A2%2C%20Trujillo%201%20URD%2C%20La%20Libertad%2C%20Trujillo%0A%7B5%2C%2012%2C%208%2C%208%7D</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::SubTitle" x="381" y="153" w="-1" h="-1" measuredW="163" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Lista%20de%20URD%27s</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

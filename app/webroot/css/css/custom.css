@@ -1,0 +1,17 @@
+/* here you can put your own css to customize and override the theme */
+
+table tbody td.td5,table thead th.td5{
+    width: 5%!important;
+}
+
+table tbody td.td10{
+    width: 10%!important;
+}
+
+table tbody td.td20{
+    width: 20%!important;
+}
+
+table tbody td.td80{
+    width: 80%!important;
+}
