@@ -219,7 +219,7 @@
             $("#OdfNUtilizados").val(n_utilizados);
             $("#OdfCodigo").val("");
             $("#OdfDescripcion").val("");
-            $("#OdfNCables").val(8);
+            $("#OdfTamBc").val() != 16 ? $("#OdfNCables").val(8) : $("#OdfNCables").val(256);
             $("#OdfCodigo").focus();
             if(n_disponibles == 0)
                 $(this).attr("disabled", true);
@@ -232,92 +232,92 @@
             var numeracion_be = 1;
             var numeracion_bc = 72;
             var tam_bc = $("#OdfTamBc").val();
-            $("#tblTubos tbody").find("tr").each(function(index) {
-                var tubo = {
-                    "id": $(this).find(".codigo").val(),
-                    "descripcion": $(this).find(".descripcion").val(),
-                    "numero_cables": $(this).find(".numero_cables").val(),
-                    "be": []
-                };
-                var n_be = tubo.numero_cables / 16;
-                var aux_n_be = tubo.numero_cables;
-                var cont_bc = 0;
-                for(i = 0; i < n_be; i++) {
-                    var numero_cables = aux_n_be == 8 ? 8 : 16;
-                    var be = {
-                        "numero_cables": numero_cables,
-                        "numeracion": numeracion_be,
-                        "bc": []
-                    }
-                    aux_n_be -= 16;
-                    numeracion_be++;
-                    for(j = 0; j < numero_cables / tam_bc; j++) {
-                        var aux_numero_cables = numero_cables < tam_bc ? numero_cables : tam_bc;
-                        var inicio = ((tam_bc * cont_bc) + 1);
-                        var fin = parseInt(inicio) + parseInt(aux_numero_cables) - 1;
-                        var bc = {
-                            "numeracion": numeracion_bc,
-                            "numero_cables": aux_numero_cables,
-                            "descripcion": inicio + " - " + fin
+            if(tam_bc == 16) {
+                $("#tblTubos tbody").find("tr").each(function(index) {
+                    var tubo = {
+                        "id": $(this).find(".codigo").val(),
+                        "descripcion": $(this).find(".descripcion").val() + "-" + ((2 * index) + 1) + " (001 - 128)",
+                        "numero_cables": 128,
+                        "be": []
+                    };
+                    distribucion.push(tubo);
+                    tubo = {
+                        "id": $(this).find(".codigo").val(),
+                        "descripcion": $(this).find(".descripcion").val() + "-" + ((2 * index) + 2) + " (129 - 256)",
+                        "numero_cables": 128,
+                        "be": []
+                    };
+                    distribucion.push(tubo);
+                });
+            } else {
+                $("#tblTubos tbody").find("tr").each(function(index) {
+                    var tubo = {
+                        "id": $(this).find(".codigo").val(),
+                        "descripcion": $(this).find(".descripcion").val(),
+                        "numero_cables": $(this).find(".numero_cables").val(),
+                        "be": []
+                    };
+                    var n_be = tubo.numero_cables / 16;
+                    var aux_n_be = tubo.numero_cables;
+                    var cont_bc = 0;
+                    for(i = 0; i < n_be; i++) {
+                        var numero_cables = aux_n_be == 8 ? 8 : 16;
+                        var be = {
+                            "numero_cables": numero_cables,
+                            "numeracion": numeracion_be,
+                            "bc": []
                         }
-                        be.bc.push(bc);
-                        numeracion_bc--;
-                        cont_bc++;
-                    }
-                    tubo.be.push(be);
-                }
-                distribucion.push(tubo);
-            });
-
-            console.log(distribucion);
-            /* if(tam_bc != 16) { */
-                distribucion.forEach(function(tubo_fibra, tf_index, tf_array) {
-                    var tf_rs = calcular_tf_rs(tubo_fibra);
-                    var tr = "";
-                    tubo_fibra.be.forEach(function(be, be_index, be_array) {
-                        var be_rs = be.bc.length;
-                        be.bc.forEach(function(bc, bc_index, bc_array) {
-                            if(be_index == 0 && bc_index == 0) {
-                                tr = "<tr>\n\
-                                    <td class='tf-descripcion' rowspan='" + tf_rs + "'><span class='id2'>(" + tubo_fibra.id + ")</span> " + tubo_fibra.descripcion + "</td>\n\
-                                    <td class='tf-be' rowspan='" + be_rs + "'>" + be.numeracion + "</td>\n\
-                                    <td class='tf-bc'>" + bc.numeracion + "</td>\n\
-                                    <td class='tf-fb'>" + bc.descripcion + "</td>\n\
-                                </tr>";
-                            } else if(bc_index == 0) {
-                                tr = "<tr>\n\
-                                    <td class='tf-be' rowspan='" + be_rs + "'>" + be.numeracion + "</td>\n\
-                                    <td class='tf-bc'>" + bc.numeracion + "</td>\n\
-                                    <td class='tf-fb'>" + bc.descripcion + "</td>\n\
-                                </tr>";
-                            } else {
-                                tr = "<tr>\n\
-                                    <td class='tf-bc'>" + bc.numeracion + "</td>\n\
-                                    <td class='tf-fb'>" + bc.descripcion + "</td>\n\
-                                </tr>";
+                        aux_n_be -= 16;
+                        numeracion_be++;
+                        for(j = 0; j < numero_cables / tam_bc; j++) {
+                            var aux_numero_cables = numero_cables < tam_bc ? numero_cables : tam_bc;
+                            var inicio = ((tam_bc * cont_bc) + 1);
+                            var fin = parseInt(inicio) + parseInt(aux_numero_cables) - 1;
+                            var bc = {
+                                "numeracion": numeracion_bc,
+                                "numero_cables": aux_numero_cables,
+                                "descripcion": inicio + " - " + fin
                             }
-                            $("#odf_detalle tbody.root").append(tr);
-                        });
+                            be.bc.push(bc);
+                            numeracion_bc--;
+                            cont_bc++;
+                        }
+                        tubo.be.push(be);
+                    }
+                    distribucion.push(tubo);
+                });
+            }
+            
+            console.log(distribucion);
+            distribucion.forEach(function(tubo_fibra, tf_index, tf_array) {
+                var tf_rs = calcular_tf_rs(tubo_fibra);
+                var tr = "";
+                tubo_fibra.be.forEach(function(be, be_index, be_array) {
+                    var be_rs = be.bc.length;
+                    be.bc.forEach(function(bc, bc_index, bc_array) {
+                        if(be_index == 0 && bc_index == 0) {
+                            tr = "<tr>\n\
+                                <td class='tf-descripcion' rowspan='" + tf_rs + "'><span class='id2'>(" + tubo_fibra.id + ")</span> " + tubo_fibra.descripcion + "</td>\n\
+                                <td class='tf-be' rowspan='" + be_rs + "'>" + be.numeracion + "</td>\n\
+                                <td class='tf-bc'>" + bc.numeracion + "</td>\n\
+                                <td class='tf-fb'>" + bc.descripcion + "</td>\n\
+                            </tr>";
+                        } else if(bc_index == 0) {
+                            tr = "<tr>\n\
+                                <td class='tf-be' rowspan='" + be_rs + "'>" + be.numeracion + "</td>\n\
+                                <td class='tf-bc'>" + bc.numeracion + "</td>\n\
+                                <td class='tf-fb'>" + bc.descripcion + "</td>\n\
+                            </tr>";
+                        } else {
+                            tr = "<tr>\n\
+                                <td class='tf-bc'>" + bc.numeracion + "</td>\n\
+                                <td class='tf-fb'>" + bc.descripcion + "</td>\n\
+                            </tr>";
+                        }
+                        $("#odf_detalle tbody.root").append(tr);
                     });
                 });
-            /* } else {
-                $("div.table-responsive").html("");
-                distribucion.forEach(function(tubo_fibra, tf_index, tf_array) {
-                    if(tubo_fibra.numero_cables == 256) {
-                        // dividir en 2
-                        var tabla1 = "<table><thead>";
-                        tabla1 += "<tr>";
-                        tubo_fibra.be.forEach(function(be, be_index, be_array) {
-                            if(be_index < 8) {
-                                tabla1 += "<th>" +  be.numeracion + "</th>";
-                            }
-                        });
-                        tabla1 += "</tr>";
-                        tabla1 += "</th></table>";
-                        $("div.table-responsive").append(tabla1);
-                    }
-                });
-            } */
+            });
         });
         function calcular_tf_rs(tubo_fibra) {           
             var tf_rs = 0;
@@ -328,6 +328,22 @@
         }
     })
 </script>
+<?php $this->Js->get("#OdfTamBc")->event("change", 
+    "if($(this).val() == 16) {" .
+    "   $(\"#OdfNCables\").html(\"<option value='256'>256</option>\");" .
+    "} else {" .
+    "   $(\"#OdfNCables\").html(" .
+    "       \"<option value='8'>8</option>" .
+    "       <option value='16'>16</option>" .
+    "       <option value='24'>24</option>" .
+    "       <option value='32'>32</option>" .
+    "       <option value='48'>48</option>" .
+    "       <option value='64'>64</option>" .
+    "       <option value='128'>128</option>" .
+    "       <option value='256'>256</option>" .
+    "   \");" .
+    "}"
+); ?>
 
 <?php
     $this->Js->get('#DepartamentoId')->event('change', 
