@@ -61,21 +61,21 @@
     color: #FF0000;
 }
 
-td.tf-descripcion {
+th.tf-descripcion, td.tf-descripcion {
     white-space: normal;
     font-size: 15px;
     background-color: #FABF8F;
 }
 
-td.tf-be {
+th.tf-be, td.tf-be {
     background-color: #D8E4BC;
     font-weight: bold;
 }
 
-td.tf-bc {
+th.tf-bc, td.tf-bc {
     background-color: #FFC000;
 }
 
-td.tf-fb {
+th.tf-fb, td.tf-fb {
     background-color: #D9D9D9;
 }

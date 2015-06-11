@@ -136,19 +136,7 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="confirmacion">
-            <div class="table-responsive">
-                <table class="table" id="odf_detalle">
-                    <thead>
-                        <tr>
-                            <th>Tubo de Fibra</th>
-                            <th>BE</th>
-                            <th>BC</th>
-                            <th>Fibra Óptica</th>
-                        </tr>
-                    </thead>
-                    <tbody class="root">
-                    </tbody>
-                </table>
+            <div class="table-responsive" id="divTubos">
             </div>
             <?php
                 echo $this->Form->button($this->Html->tag("span", "", array("class" => "glyphicon glyphicon-ok")) . " Registrar", array("class" => "btn btn-default"));
@@ -173,7 +161,7 @@
                     $("#tblTubos tbody tr").remove();
                     $("#OdfCodigo").val("");
                     $("#OdfDescripcion").val("");
-                    $("#OdfNCables").val(8);
+                    $("#OdfTamBc").val() != 16 ? $("#OdfNCables").val(8) : $("#OdfNCables").val(256);
                     $("#btnAgregar").attr("disabled", false);
                 }
                 else {
@@ -240,6 +228,22 @@
                         "numero_cables": 128,
                         "be": []
                     };
+                    for(var i = 0; i < 8; i++) {
+                        var be = {
+                            "numero_cables": 16,
+                            "numeracion": (i + 1),
+                            "bc": []
+                        }
+                        var inicio = 16 * i + 1;
+                        var fin = 16 * (i + 1);
+                        var bc = {
+                            "numeracion": (i + 1),
+                            "numero_cables": 16,
+                            "descripcion": inicio + " - " + fin
+                        }
+                        be.bc.push(bc);
+                        tubo.be.push(be);
+                    }
                     distribucion.push(tubo);
                     tubo = {
                         "id": $(this).find(".codigo").val(),
@@ -247,6 +251,22 @@
                         "numero_cables": 128,
                         "be": []
                     };
+                    for(var i = 0; i < 8; i++) {
+                        var be = {
+                            "numero_cables": 16,
+                            "numeracion": (i + 1),
+                            "bc": []
+                        }
+                        var inicio = 128 + (16 * i + 1);
+                        var fin = 128 + (16 * (i + 1));
+                        var bc = {
+                            "numeracion": (i + 1),
+                            "numero_cables": 16,
+                            "descripcion": inicio + " - " + fin
+                        }
+                        be.bc.push(bc);
+                        tubo.be.push(be);
+                    }
                     distribucion.push(tubo);
                 });
             } else {
@@ -289,36 +309,93 @@
             }
             
             console.log(distribucion);
-            distribucion.forEach(function(tubo_fibra, tf_index, tf_array) {
-                var tf_rs = calcular_tf_rs(tubo_fibra);
-                var tr = "";
-                tubo_fibra.be.forEach(function(be, be_index, be_array) {
-                    var be_rs = be.bc.length;
-                    be.bc.forEach(function(bc, bc_index, bc_array) {
-                        if(be_index == 0 && bc_index == 0) {
-                            tr = "<tr>\n\
-                                <td class='tf-descripcion' rowspan='" + tf_rs + "'><span class='id2'>(" + tubo_fibra.id + ")</span> " + tubo_fibra.descripcion + "</td>\n\
-                                <td class='tf-be' rowspan='" + be_rs + "'>" + be.numeracion + "</td>\n\
-                                <td class='tf-bc'>" + bc.numeracion + "</td>\n\
-                                <td class='tf-fb'>" + bc.descripcion + "</td>\n\
-                            </tr>";
-                        } else if(bc_index == 0) {
-                            tr = "<tr>\n\
-                                <td class='tf-be' rowspan='" + be_rs + "'>" + be.numeracion + "</td>\n\
-                                <td class='tf-bc'>" + bc.numeracion + "</td>\n\
-                                <td class='tf-fb'>" + bc.descripcion + "</td>\n\
-                            </tr>";
-                        } else {
-                            tr = "<tr>\n\
-                                <td class='tf-bc'>" + bc.numeracion + "</td>\n\
-                                <td class='tf-fb'>" + bc.descripcion + "</td>\n\
-                            </tr>";
-                        }
-                        $("#odf_detalle tbody.root").append(tr);
+            if(tam_bc == 16) {
+                $("#divTubos").html("");
+                distribucion.forEach(function(tubo_fibra, tf_index, tf_array) {
+                    var table = "\n\
+                    <table class='table'>\n\
+                        <thead>"
+                            + crear_thead(tubo_fibra) +
+                        "</thead>\n\
+                        <tbody class='root'>"
+                            + crear_tbody(tubo_fibra) +
+                        "</tbody>\n\
+                    </table>";
+                    $("#divTubos").append(table);
+                    $("#divTubos").append("<hr>");
+                });
+            }
+            else {            
+                $("#divTubos").html("");
+                    var table = "\n\
+                    <table class='table' id='odf_detalle'>\n\
+                        <thead>\n\
+                            <tr>\n\
+                                <th>Tubo de Fibra</th>\n\
+                                <th>BE</th>\n\
+                                <th>BC</th>\n\
+                                <th>Fibra Óptica</th>\n\
+                            </tr>\n\
+                        </thead>\n\
+                        <tbody class='root'>\n\
+                        </tbody>\n\
+                    </table>";
+                    $("#divTubos").append(table)
+                distribucion.forEach(function(tubo_fibra, tf_index, tf_array) {
+                    var tf_rs = calcular_tf_rs(tubo_fibra);
+                    var tr = "";
+                    tubo_fibra.be.forEach(function(be, be_index, be_array) {
+                        var be_rs = be.bc.length;
+                        be.bc.forEach(function(bc, bc_index, bc_array) {
+                            if(be_index == 0 && bc_index == 0) {
+                                tr = "<tr>\n\
+                                    <td class='tf-descripcion' rowspan='" + tf_rs + "'><span class='id2'>(" + tubo_fibra.id + ")</span> " + tubo_fibra.descripcion + "</td>\n\
+                                    <td class='tf-be' rowspan='" + be_rs + "'>" + be.numeracion + "</td>\n\
+                                    <td class='tf-bc'>" + bc.numeracion + "</td>\n\
+                                    <td class='tf-fb'>" + bc.descripcion + "</td>\n\
+                                </tr>";
+                            } else if(bc_index == 0) {
+                                tr = "<tr>\n\
+                                    <td class='tf-be' rowspan='" + be_rs + "'>" + be.numeracion + "</td>\n\
+                                    <td class='tf-bc'>" + bc.numeracion + "</td>\n\
+                                    <td class='tf-fb'>" + bc.descripcion + "</td>\n\
+                                </tr>";
+                            } else {
+                                tr = "<tr>\n\
+                                    <td class='tf-bc'>" + bc.numeracion + "</td>\n\
+                                    <td class='tf-fb'>" + bc.descripcion + "</td>\n\
+                                </tr>";
+                            }
+                            $("#odf_detalle tbody.root").append(tr);
+                        });
                     });
                 });
-            });
+            }
         });
+        
+        function crear_thead(tubo_fibra) {
+            var thead = "<tr><th rowspan='2'>Tubo de Fibra</th>";
+            tubo_fibra.be.forEach(function(be, be_index, be_array) {
+                thead += "<th class='tf-be'>BANDEJA EMPALME-" + be.numeracion + "</th>";
+            });
+            thead += "</tr><tr>";
+            tubo_fibra.be.forEach(function(be, be_index, be_array) {
+                thead += "<th class='tf-bc'>BANDEJA CONECTORES-" + be.bc[0].numeracion + "</th>";
+            });
+            thead += "</tr>";
+            return thead;
+        }
+        
+        function crear_tbody(tubo_fibra) {
+            var tbody = "<tr><td class='tf-descripcion'><span class='id2'>(" + tubo_fibra.id + ")</span> " + tubo_fibra.descripcion + "</td>";
+            
+            tubo_fibra.be.forEach(function(be, be_index, be_array) {
+                tbody += "<td class='tf-fb'>" + be.bc[0].descripcion + "</td>";
+            });
+            tbody += "</tr>";
+            return tbody;
+        }
+        
         function calcular_tf_rs(tubo_fibra) {           
             var tf_rs = 0;
             tubo_fibra.be.forEach(function(be, be_index, be_array) {
