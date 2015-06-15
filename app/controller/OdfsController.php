@@ -32,58 +32,141 @@ class OdfsController extends AppController {
                 $numeracion_bc = 72;
                 $tam_bc = $this->request->data["Odf"]["tam_bc"];
                 $numeracion_tubofibra = 1;
-                foreach($this->request->data["Tubofibra"] as $tubofibra) {
-                    $tubofibra["id"] = null;
-                    $tubofibra["odfs_id"] = $this->Odf->id;
-                    $tubofibra["numeracion"] = $numeracion_tubofibra;
-                    if(!$this->Odf->Tubofibra->save($tubofibra)) {
-                        $r = false;
-                    }
-                    
-                    $n_be = $tubofibra["numero_cables"] / 16;
-                    $aux_n_be = $tubofibra["numero_cables"];
-                    $cont_bc = 0;
-                    $numeracion_tubofibra++;
-                    $numeracion_conectorfibra = 1;
-                    
-                    for($i = 0; $i < $n_be; $i++) {
-                        $numero_cables = $aux_n_be == 8 ? 8 : 16;
-                        $be["tubofibras_id"] = $this->Odf->Tubofibra->id;
-                        $be["numero_cables"] = $numero_cables;
-                        $be["numeracion"] = $numeracion_be;
-                        $be["id"] = null;
-                        
-                        if(!$this->Be->save($be)) {
+                if($tam_bc == 16) {
+                    foreach($this->request->data["Tubofibra"] as $index => $tubofibra) {
+                        $tf_descripcion = $tubofibra["descripcion"];
+                        $tubofibra["id"] = null;
+                        $tubofibra["odfs_id"] = $this->Odf->id;
+                        $tubofibra["numeracion"] = $numeracion_tubofibra;
+                        $tubofibra["descripcion"] = $tf_descripcion . "-" . ((2 * $index) + 1) . " (001 - 128)";
+                        $tubofibra["numero_cables"] = 128;
+                        if(!$this->Odf->Tubofibra->save($tubofibra)) {
                             $r = false;
                         }
-                        
-                        $aux_n_be -= 16;
-                        $numeracion_be++;
-                        
-                        for($j = 0; $j < $numero_cables / $tam_bc; $j++) {
-                            $aux_numero_cables = $numero_cables < $tam_bc ? $numero_cables : $tam_bc;
+                        for($i = 0; $i < 8; $i++) {
+                            $be["tubofibras_id"] = $this->Odf->Tubofibra->id;
+                            $be["numero_cables"] = 16;
+                            $be["numeracion"] = ($i + 1);
+                            $be["id"] = null;
+                            if(!$this->Be->save($be)) {
+                                $r = false;
+                            }
+                            $inicio = 16 * $i + 1;
+                            $fin = 16 * ($i + 1);
                             
                             $bc["bes_id"] = $this->Be->id;
-                            $bc["numero_cables"] = $aux_numero_cables;
-                            $bc["numeracion"] = $numeracion_bc;           
+                            $bc["numero_cables"] = 16;
+                            $bc["numeracion"] = ($i + 1);           
                             $bc["id"] = null;
                             if(!$this->Bc->save($bc)) {
                                 $r = false;
                             }
-                            
-                            $numeracion_bc--;
-                            $cont_bc++;
-                            
-                            for($k = 0; $k < $aux_numero_cables; $k++) {
+                            for($k = 0; $k < 16; $k++) {
                                 $conectorfibra["bcs_id"] = $this->Bc->id;
                                 $conectorfibra["tipos_id"] = 1; // LIBRE
                                 $conectorfibra["gestores_id"] = 1; // SIN GESTOR
-                                $conectorfibra["numeracion"] = $numeracion_conectorfibra;
-                                $numeracion_conectorfibra++;
+                                $conectorfibra["numeracion"] = $inicio + $k;
                                 $conectorfibra["id"] = null;
                                 $conectorfibra["descripcion"] = "LIBRE";
                                 if(!$this->Conectorfibra->save($conectorfibra)) {
                                     $r = false;
+                                }
+                            }
+                        }
+                        
+                        $tubofibra["id"] = null;
+                        $tubofibra["odfs_id"] = $this->Odf->id;
+                        $tubofibra["numeracion"] = $numeracion_tubofibra;
+                        $tubofibra["descripcion"] = $tf_descripcion . "-" . ((2 * $index) + 2) . " (129 - 256)";
+                        $tubofibra["numero_cables"] = 128;
+                        if(!$this->Odf->Tubofibra->save($tubofibra)) {
+                            $r = false;
+                        }
+                        for($i = 0; $i < 8; $i++) {
+                            $be["tubofibras_id"] = $this->Odf->Tubofibra->id;
+                            $be["numero_cables"] = 16;
+                            $be["numeracion"] = ($i + 1);
+                            $be["id"] = null;
+                            if(!$this->Be->save($be)) {
+                                $r = false;
+                            }
+                            $inicio = 128 + (16 * $i + 1);
+                            $fin = 128 + (16 * ($i + 1));
+                            
+                            $bc["bes_id"] = $this->Be->id;
+                            $bc["numero_cables"] = 16;
+                            $bc["numeracion"] = ($i + 1);           
+                            $bc["id"] = null;
+                            if(!$this->Bc->save($bc)) {
+                                $r = false;
+                            }
+                            for($k = 0; $k < 16; $k++) {
+                                $conectorfibra["bcs_id"] = $this->Bc->id;
+                                $conectorfibra["tipos_id"] = 1; // LIBRE
+                                $conectorfibra["gestores_id"] = 1; // SIN GESTOR
+                                $conectorfibra["numeracion"] = $inicio + $k;
+                                $conectorfibra["id"] = null;
+                                $conectorfibra["descripcion"] = "LIBRE";
+                                if(!$this->Conectorfibra->save($conectorfibra)) {
+                                    $r = false;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    foreach($this->request->data["Tubofibra"] as $tubofibra) {
+                        $tubofibra["id"] = null;
+                        $tubofibra["odfs_id"] = $this->Odf->id;
+                        $tubofibra["numeracion"] = $numeracion_tubofibra;
+                        if(!$this->Odf->Tubofibra->save($tubofibra)) {
+                            $r = false;
+                        }
+
+                        $n_be = $tubofibra["numero_cables"] / 16;
+                        $aux_n_be = $tubofibra["numero_cables"];
+                        $cont_bc = 0;
+                        $numeracion_tubofibra++;
+                        $numeracion_conectorfibra = 1;
+
+                        for($i = 0; $i < $n_be; $i++) {
+                            $numero_cables = $aux_n_be == 8 ? 8 : 16;
+                            $be["tubofibras_id"] = $this->Odf->Tubofibra->id;
+                            $be["numero_cables"] = $numero_cables;
+                            $be["numeracion"] = $numeracion_be;
+                            $be["id"] = null;
+
+                            if(!$this->Be->save($be)) {
+                                $r = false;
+                            }
+
+                            $aux_n_be -= 16;
+                            $numeracion_be++;
+
+                            for($j = 0; $j < $numero_cables / $tam_bc; $j++) {
+                                $aux_numero_cables = $numero_cables < $tam_bc ? $numero_cables : $tam_bc;
+
+                                $bc["bes_id"] = $this->Be->id;
+                                $bc["numero_cables"] = $aux_numero_cables;
+                                $bc["numeracion"] = $numeracion_bc;           
+                                $bc["id"] = null;
+                                if(!$this->Bc->save($bc)) {
+                                    $r = false;
+                                }
+
+                                $numeracion_bc--;
+                                $cont_bc++;
+
+                                for($k = 0; $k < $aux_numero_cables; $k++) {
+                                    $conectorfibra["bcs_id"] = $this->Bc->id;
+                                    $conectorfibra["tipos_id"] = 1; // LIBRE
+                                    $conectorfibra["gestores_id"] = 1; // SIN GESTOR
+                                    $conectorfibra["numeracion"] = $numeracion_conectorfibra;
+                                    $numeracion_conectorfibra++;
+                                    $conectorfibra["id"] = null;
+                                    $conectorfibra["descripcion"] = "LIBRE";
+                                    if(!$this->Conectorfibra->save($conectorfibra)) {
+                                        $r = false;
+                                    }
                                 }
                             }
                         }

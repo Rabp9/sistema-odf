@@ -50,7 +50,7 @@
                     "type" => "number",
                     "step" => 8,
                     "value" => 8,
-                    "max" => 512,
+                    "max" => 1024,
                     "min" => 8
                 ));
                 echo $this->Form->input("tam_bc", array(
