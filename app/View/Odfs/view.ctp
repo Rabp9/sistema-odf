@@ -6,6 +6,78 @@
 <h2>ODFs <small>Ver</small></h2>
 URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["numeracion"]; ?>
 <div class="table-responsive">
+<?php if($odf["Odf"]["tam_bc"] == 16) {
+        function crear_thead($tubo_fibra) {
+            $thead = "<tr><th rowspan='2'>Tubo de Fibra</th>";
+            foreach($tubo_fibra["Be"] as $be) {
+                $thead .= "<th class='tf-be'>BANDEJA EMPALME-" . $be["numeracion"] . "</th>";
+            }
+            $thead .= "</tr><tr>";
+            foreach($tubo_fibra["Be"] as $be) {
+                $thead .= "<th class='tf-bc'>BANDEJA CONECTORES-" . $be["Bc"][0]["numeracion"] . "</th>";
+            }
+            $thead .= "</tr>";
+            return $thead;
+        }
+        
+        function crear_tbody($tubo_fibra) {
+            $tbody = "<tr><td class='tf-descripcion'><span class='id2'>(" . $tubo_fibra["id"] . ")</span> " . $tubo_fibra["descripcion"] . "</td>";
+            
+            foreach($tubo_fibra["Be"] as $be) {
+                $tbody .= "<td class='tf-fb'>" . generarfb2($be["Bc"][0]) . "</td>";
+            }
+            $tbody .= "</tr>";
+            return $tbody;
+        }
+             
+        function generarfb2($bc) {
+            $fb = "<table><tbody>";
+            for($i = 0; $i < sizeof($bc["Conectorfibra"]); $i += 2) {
+                $conectorfibra1 = $bc["Conectorfibra"][$i];
+                $conectorfibra2 = $bc["Conectorfibra"][$i + 1];
+                $fb .= "<tr><td class='numeracion tf-fb' >" . $conectorfibra1["numeracion"] . "</td>";
+                $fb .= "<td>\n
+                    <input class='id' type='hidden' value='" . $conectorfibra1["id"] . "'>\n
+                    <input class='numeracion' type='hidden' value='" . $conectorfibra1["numeracion"] . "'>\n
+                    <input class='descripcion' type='hidden' value='" . $conectorfibra1["descripcion"] . "'>\n
+                    <input class='observacion' type='hidden' value='" . $conectorfibra1["observacion"] . "'>\n
+                    <input class='tipos_id' type='hidden' value='" . $conectorfibra1["tipos_id"] . "'>\n
+                    <input class='gestores_id' type='hidden' value='" . $conectorfibra1["gestores_id"] . "'>\n
+                    <input class='intermedio' type='hidden' value='" . $conectorfibra1["intermedio"] . "'>\n
+                    <input class='gestor_ubicacion' type='hidden' value='" . $conectorfibra1["gestor_ubicacion"] . "'>\n
+                    <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo" . $conectorfibra1["tipos_id"] . "' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra1["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra1["observacion"], 0, 15) . "</button>\n
+                </td>";                
+                $fb .= "<td>\n
+                    <input class='id' type='hidden' value='" . $conectorfibra2["id"] . "'>\n
+                    <input class='numeracion' type='hidden' value='" . $conectorfibra2["numeracion"] . "'>\n
+                    <input class='descripcion' type='hidden' value='" . $conectorfibra2["descripcion"] . "'>\n
+                    <input class='observacion' type='hidden' value='" . $conectorfibra2["observacion"] . "'>\n
+                    <input class='tipos_id' type='hidden' value='" . $conectorfibra2["tipos_id"] . "'>\n
+                    <input class='gestores_id' type='hidden' value='" . $conectorfibra2["gestores_id"] . "'>\n
+                    <input class='intermedio' type='hidden' value='" . $conectorfibra2["intermedio"] . "'>\n
+                    <input class='gestor_ubicacion' type='hidden' value='" . $conectorfibra2["gestor_ubicacion"] . "'>\n
+                    <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo" . $conectorfibra2["tipos_id"] . "' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra2["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra2["observacion"], 0, 15) . "</button>\n
+                </td>";
+                $fb .= "<td class='numeracion tf-fb' >" . $conectorfibra2["numeracion"] . "</td></tr>";
+            }
+            $fb .= "</tbody></table>";
+            return $fb;
+        }
+        
+        foreach($odf["Tubofibra"] as $tubofibra) {
+            $table = "" .
+            "<table class='table'>" .
+            "    <thead>" .
+                    crear_thead($tubofibra) .
+            "    </thead>" .
+            "    <tbody class='root'>" .
+                    crear_tbody($tubofibra) .
+            "    </tbody>" .
+            "</table>";
+            echo $table;
+            echo "<hr>";
+        } ?>
+<?php } else { ?>
     <table class="table" id="odf_detalle">
         <thead>
             <tr>
@@ -24,8 +96,8 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                     }
                     return $tf_rs;
                 }
-                
-                function generarfb($bc) {           
+               
+                function generarfb($bc) {
                     $fb = "<table><tbody><tr>";
                     for($i = 0; $i < sizeof($bc["Conectorfibra"]); $i += 2) {
                         $conectorfibra1 = $bc["Conectorfibra"][$i];
@@ -40,25 +112,25 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                             <input class='gestores_id' type='hidden' value='" . $conectorfibra1["gestores_id"] . "'>\n
                             <input class='intermedio' type='hidden' value='" . $conectorfibra1["intermedio"] . "'>\n
                             <input class='gestor_ubicacion' type='hidden' value='" . $conectorfibra1["gestor_ubicacion"] . "'>\n
-                            <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo1' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra1["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra1["observacion"], 0, 15) . "</button>\n
+                            <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo" . $conectorfibra1["tipos_id"] . "' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra1["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra1["observacion"], 0, 15) . "</button>\n
                         </td>";                
                         $fb .= "<td>\n
-                            <input class='id' type='hidden' value='1'>\n
-                            <input class='numeracion' type='hidden' value='1'>\n
-                            <input class='descripcion' type='hidden' value='LIBRE'>\n
-                            <input class='observacion' type='hidden' value=''>\n
-                            <input class='tipos_id' type='hidden' value='1'>\n
-                            <input class='gestores_id' type='hidden' value='1'>\n
-                            <input class='intermedio' type='hidden' value=''>\n
-                            <input class='gestor_ubicacion' type='hidden' value=''>\n
-                            <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo1' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra2["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra2["observacion"], 0, 15) . "</button>\n
+                            <input class='id' type='hidden' value='" . $conectorfibra2["id"] . "'>\n
+                            <input class='numeracion' type='hidden' value='" . $conectorfibra2["numeracion"] . "'>\n
+                            <input class='descripcion' type='hidden' value='" . $conectorfibra2["descripcion"] . "'>\n
+                            <input class='observacion' type='hidden' value='" . $conectorfibra2["observacion"] . "'>\n
+                            <input class='tipos_id' type='hidden' value='" . $conectorfibra2["tipos_id"] . "'>\n
+                            <input class='gestores_id' type='hidden' value='" . $conectorfibra2["gestores_id"] . "'>\n
+                            <input class='intermedio' type='hidden' value='" . $conectorfibra2["intermedio"] . "'>\n
+                            <input class='gestor_ubicacion' type='hidden' value='" . $conectorfibra2["gestor_ubicacion"] . "'>\n
+                            <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo" . $conectorfibra2["tipos_id"] . "' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra2["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra2["observacion"], 0, 15) . "</button>\n
                         </td>";
                         $fb .= "<td class='numeracion tf-fb' rowspan='2'>" . ($i + 2) . "</td>";
                     }
                     $fb .= "</tr></tbody></table>";
                     return $fb;
                 }
-                
+        
                 foreach($odf["Tubofibra"] as $tubofibra) {
                     $tf_rs = calcular_tf_rs($tubofibra);
                     $tr = "";
@@ -96,6 +168,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
             ?>
         </tbody>
     </table>
+<?php } ?>
 </div>
 <h3>Notas</h3>
 <?php
