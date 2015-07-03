@@ -1363,14 +1363,18 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="">
+                    <li class="<?php echo $this->request->params["controller"] == "Reportes"
+                        ? "open" : ""; ?>">
                         <a href="javascript:;">
                             <i class="icon-wrench"></i> 
                             <span class="title">Reportes</span>
                             <span class="arrow "></span>
                         </a>
-                        <ul class="sub-menu">
-                            <li class="">
+                        <ul class="sub-menu"<?php echo $this->request->params["controller"] == "Reportes"             
+                            ? "style='display: block'" : ""; ?>>
+                            <li class="<?php echo $this->request->params['controller'] == 'Reportes' &&
+                                $this->request->params["action"] == "departamentos" ? 'active' : ''; 
+                            ?>">
                                 <a href="<?php echo $this->Html->url(array(
                                     "controller" => "Reportes",
                                     "action" => "departamentos"
@@ -1378,7 +1382,9 @@
                                     Departamentos                
                                 </a>
                             </li>
-                            <li class="">
+                            <li class="<?php echo $this->request->params['controller'] == 'Reportes' &&
+                                $this->request->params["action"] == "provincias" ? 'active' : ''; 
+                            ?>">
                                 <a href="<?php echo $this->Html->url(array(
                                     "controller" => "Reportes",
                                     "action" => "provincias"
@@ -1386,7 +1392,9 @@
                                     Provincias                
                                 </a>
                             </li>
-                            <li class="">
+                            <li class="<?php echo $this->request->params['controller'] == 'Reportes' &&
+                                $this->request->params["action"] == "urds" ? 'active' : ''; 
+                            ?>">
                                 <a href="<?php echo $this->Html->url(array(
                                     "controller" => "Reportes",
                                     "action" => "urds"
@@ -1394,7 +1402,9 @@
                                     URD's                
                                 </a>
                             </li>
-                            <li class="">
+                            <li class="<?php echo $this->request->params['controller'] == 'Reportes' &&
+                                $this->request->params["action"] == "odfs" ? 'active' : ''; 
+                            ?>">
                                 <a href="<?php echo $this->Html->url(array(
                                     "controller" => "Reportes",
                                     "action" => "odfs"
