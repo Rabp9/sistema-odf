@@ -1372,42 +1372,34 @@
                         <ul class="sub-menu">
                             <li class="">
                                 <a href="<?php echo $this->Html->url(array(
-                                    "controller" => "Departamentos",
-                                    "action" => "index"
+                                    "controller" => "Reportes",
+                                    "action" => "departamentos"
                                 )); ?>">
                                     Departamentos                
                                 </a>
                             </li>
                             <li class="">
                                 <a href="<?php echo $this->Html->url(array(
-                                    "controller" => "Provincias",
-                                    "action" => "index"
+                                    "controller" => "Reportes",
+                                    "action" => "provincias"
                                 )); ?>">
                                     Provincias                
                                 </a>
                             </li>
                             <li class="">
                                 <a href="<?php echo $this->Html->url(array(
-                                    "controller" => "Urds",
-                                    "action" => "index"
+                                    "controller" => "Reportes",
+                                    "action" => "urds"
                                 )); ?>">
                                     URD's                
                                 </a>
                             </li>
                             <li class="">
                                 <a href="<?php echo $this->Html->url(array(
-                                    "controller" => "Odfs",
-                                    "action" => "index"
+                                    "controller" => "Reportes",
+                                    "action" => "odfs"
                                 )); ?>">
                                     ODF's                
-                                </a>
-                            </li>
-                            <li class="" >
-                                <a href="<?php echo $this->Html->url(array(
-                                    "controller" => "Users",
-                                    "action" => "index"
-                                )); ?>">
-                                    Usuarios                
                                 </a>
                             </li>
                         </ul>
