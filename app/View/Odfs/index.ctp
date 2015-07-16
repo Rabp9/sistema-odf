@@ -57,6 +57,16 @@
                                     );
                                 ?>
                             </li>
+                            <li role="presentation">
+                                <?php
+                                    echo $this->Html->link(
+                                        $this->Html->tag("span", "", array("class" => "glyphicon glyphicon-download")) .
+                                        " Exportar en Excel",
+                                        array("controller" => "Reportes", "action" => "reporte_odf", $odf["Odf"]["id"]),
+                                        array("escape" => false)
+                                    );
+                                ?>
+                            </li>
                         </ul>
                     </div>
                 </td>

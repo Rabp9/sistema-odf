@@ -1366,7 +1366,7 @@
                     <li class="<?php echo $this->request->params["controller"] == "Reportes"
                         ? "open" : ""; ?>">
                         <a href="javascript:;">
-                            <i class="icon-wrench"></i> 
+                            <i class="icon-file"></i> 
                             <span class="title">Reportes</span>
                             <span class="arrow "></span>
                         </a>

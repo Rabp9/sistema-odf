@@ -21,7 +21,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
         }
         
         function crear_tbody($tubo_fibra) {
-            $tbody = "<tr><td class='tf-descripcion'><span class='id2'>(" . $tubo_fibra["id"] . ")</span> " . $tubo_fibra["descripcion"] . "</td>";
+            $tbody = "<tr><td class='tf-descripcion'><span class='id2'>(" . $tubo_fibra["id2"] . ")</span> " . $tubo_fibra["descripcion"] . "</td>";
             
             foreach($tubo_fibra["Be"] as $be) {
                 $tbody .= "<td class='tf-fb'>" . generarfb2($be["Bc"][0]) . "</td>";
@@ -102,7 +102,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                     for($i = 0; $i < sizeof($bc["Conectorfibra"]); $i += 2) {
                         $conectorfibra1 = $bc["Conectorfibra"][$i];
                         $conectorfibra2 = $bc["Conectorfibra"][$i + 1];
-                        $fb .= "<td class='numeracion tf-fb' rowspan='2'>" . ($i + 1) . "</td>";
+                        $fb .= "<td class='numeracion tf-fb' rowspan='2'>" . $conectorfibra1["numeracion"] . "</td>";
                         $fb .= "<td>\n
                             <input class='id' type='hidden' value='" . $conectorfibra1["id"] . "'>\n
                             <input class='numeracion' type='hidden' value='" . $conectorfibra1["numeracion"] . "'>\n
@@ -125,7 +125,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                             <input class='gestor_ubicacion' type='hidden' value='" . $conectorfibra2["gestor_ubicacion"] . "'>\n
                             <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo" . $conectorfibra2["tipos_id"] . "' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra2["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra2["observacion"], 0, 15) . "</button>\n
                         </td>";
-                        $fb .= "<td class='numeracion tf-fb' rowspan='2'>" . ($i + 2) . "</td>";
+                        $fb .= "<td class='numeracion tf-fb' rowspan='2'>" . $conectorfibra2["numeracion"] . "</td>";
                     }
                     $fb .= "</tr></tbody></table>";
                     return $fb;
@@ -142,7 +142,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                             $bc["descripcion"] = generarfb($bc);
                             if($be_index == 0 && $bc_index == 0) {
                                 $tr = "<tr>\n
-                                    <td class='tf-descripcion' rowspan='" . $tf_rs . "'><span class='id2'>(" . $tubofibra["id"] . ")</span> " . $tubofibra["descripcion"] . "</td>\n
+                                    <td class='tf-descripcion' rowspan='" . $tf_rs . "'><span class='id2'>(" . $tubofibra["id2"] . ")</span> " . $tubofibra["descripcion"] . "</td>\n
                                     <td class='tf-be' rowspan='" . $be_rs . "'>" . $be["numeracion"] . "</td>\n
                                     <td class='tf-bc'>" . $bc["numeracion"] . "</td>\n 
                                     <td class=''>"  . $bc["descripcion"] . "</td>\n

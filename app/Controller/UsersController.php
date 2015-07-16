@@ -10,7 +10,7 @@
 class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
-        // $this->Auth->allow("index", "initDB", "add", "login");
+        $this->Auth->allow("index", "initDB", "add", "login");
     }
 
     public function initDB() {
