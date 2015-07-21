@@ -6,7 +6,7 @@
  */
 App::import('Vendor', 'PHPExcel', array('file' => 'PHPExcel/PHPExcel.php'));
 
-class ReportesController extends AppController {
+class ReportesController extends AppController {  
     
     public $uses = array("Departamento", "Provincia", "Urd", "Odf");
     

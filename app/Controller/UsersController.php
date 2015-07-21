@@ -10,7 +10,7 @@
 class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow("index", "initDB", "add", "login");
+        //$this->Auth->allow("index", "initDB", "add", "login");
     }
 
     public function initDB() {
@@ -47,6 +47,8 @@ class UsersController extends AppController {
         $this->Acl->deny($group, 'controllers/Users/add');
         $this->Acl->deny($group, 'controllers/Users/edit');
         $this->Acl->deny($group, 'controllers/Users/delete');
+        
+        $this->Acl->allow($group, 'controllers/Reportes');
         
         // we add an exit to avoid an ugly "missing views" error message
         echo "all done";

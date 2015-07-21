@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `sistema-odf` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `sistema-odf`;
+-- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
--- Host: localhost    Database: sistema-odf
+-- Host: 127.0.0.1    Database: sistema-odf
 -- ------------------------------------------------------
--- Server version	5.6.17
+-- Server version	5.6.12-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -33,7 +35,7 @@ CREATE TABLE `acos` (
   PRIMARY KEY (`id`),
   KEY `idx_acos_lft_rght` (`lft`,`rght`),
   KEY `idx_acos_alias` (`alias`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +44,7 @@ CREATE TABLE `acos` (
 
 LOCK TABLES `acos` WRITE;
 /*!40000 ALTER TABLE `acos` DISABLE KEYS */;
-INSERT INTO `acos` VALUES (1,NULL,NULL,NULL,'controllers',1,104),(2,1,NULL,NULL,'Departamentos',2,19),(3,2,NULL,NULL,'index',3,4),(4,2,NULL,NULL,'add',5,6),(5,2,NULL,NULL,'view',7,8),(6,2,NULL,NULL,'edit',9,10),(7,2,NULL,NULL,'index_map',11,12),(8,2,NULL,NULL,'view_map',13,14),(9,2,NULL,NULL,'delete',15,16),(10,2,NULL,NULL,'menu_departamentos',17,18),(11,1,NULL,NULL,'Groups',20,27),(12,11,NULL,NULL,'index',21,22),(13,11,NULL,NULL,'view',23,24),(14,11,NULL,NULL,'add',25,26),(15,1,NULL,NULL,'Notas',28,31),(16,15,NULL,NULL,'ultimas_notas',29,30),(17,1,NULL,NULL,'Odfs',32,43),(18,17,NULL,NULL,'index',33,34),(19,17,NULL,NULL,'add',35,36),(20,17,NULL,NULL,'view',37,38),(21,17,NULL,NULL,'administrar',39,40),(22,17,NULL,NULL,'delete',41,42),(23,1,NULL,NULL,'Pages',44,47),(24,23,NULL,NULL,'display',45,46),(25,1,NULL,NULL,'Provincias',48,65),(26,25,NULL,NULL,'index',49,50),(27,25,NULL,NULL,'add',51,52),(28,25,NULL,NULL,'view',53,54),(29,25,NULL,NULL,'edit',55,56),(30,25,NULL,NULL,'view_map',57,58),(31,25,NULL,NULL,'getByDepartamento',59,60),(32,25,NULL,NULL,'delete',61,62),(33,25,NULL,NULL,'menu_provincias',63,64),(34,1,NULL,NULL,'Urds',66,79),(35,34,NULL,NULL,'index',67,68),(36,34,NULL,NULL,'add',69,70),(37,34,NULL,NULL,'view',71,72),(38,34,NULL,NULL,'edit',73,74),(39,34,NULL,NULL,'getByProvincia',75,76),(40,34,NULL,NULL,'delete',77,78),(41,1,NULL,NULL,'Users',80,101),(42,41,NULL,NULL,'initDB',81,82),(43,41,NULL,NULL,'index',83,84),(44,41,NULL,NULL,'view',85,86),(45,41,NULL,NULL,'add',87,88),(46,41,NULL,NULL,'edit',89,90),(47,41,NULL,NULL,'delete',91,92),(48,41,NULL,NULL,'login',93,94),(49,41,NULL,NULL,'logout',95,96),(50,41,NULL,NULL,'manage_usuario',97,98),(51,41,NULL,NULL,'change_password',99,100),(52,1,NULL,NULL,'AclExtras',102,103);
+INSERT INTO `acos` VALUES (1,NULL,NULL,NULL,'controllers',1,124),(2,1,NULL,NULL,'Departamentos',2,19),(3,2,NULL,NULL,'index',3,4),(4,2,NULL,NULL,'add',5,6),(5,2,NULL,NULL,'view',7,8),(6,2,NULL,NULL,'edit',9,10),(7,2,NULL,NULL,'index_map',11,12),(8,2,NULL,NULL,'view_map',13,14),(9,2,NULL,NULL,'delete',15,16),(10,2,NULL,NULL,'menu_departamentos',17,18),(11,1,NULL,NULL,'Groups',20,27),(12,11,NULL,NULL,'index',21,22),(13,11,NULL,NULL,'view',23,24),(14,11,NULL,NULL,'add',25,26),(15,1,NULL,NULL,'Notas',28,31),(16,15,NULL,NULL,'ultimas_notas',29,30),(17,1,NULL,NULL,'Odfs',32,43),(18,17,NULL,NULL,'index',33,34),(19,17,NULL,NULL,'add',35,36),(20,17,NULL,NULL,'view',37,38),(21,17,NULL,NULL,'administrar',39,40),(22,17,NULL,NULL,'delete',41,42),(23,1,NULL,NULL,'Pages',44,47),(24,23,NULL,NULL,'display',45,46),(25,1,NULL,NULL,'Provincias',48,65),(26,25,NULL,NULL,'index',49,50),(27,25,NULL,NULL,'add',51,52),(28,25,NULL,NULL,'view',53,54),(29,25,NULL,NULL,'edit',55,56),(30,25,NULL,NULL,'view_map',57,58),(31,25,NULL,NULL,'getByDepartamento',59,60),(32,25,NULL,NULL,'delete',61,62),(33,25,NULL,NULL,'menu_provincias',63,64),(34,1,NULL,NULL,'Reportes',66,85),(35,34,NULL,NULL,'departamentos',67,68),(36,34,NULL,NULL,'departamentos_post',69,70),(37,34,NULL,NULL,'provincias',71,72),(38,34,NULL,NULL,'provincias_post',73,74),(39,34,NULL,NULL,'urds',75,76),(40,34,NULL,NULL,'urds_post',77,78),(41,34,NULL,NULL,'odfs',79,80),(42,34,NULL,NULL,'odfs_post',81,82),(43,34,NULL,NULL,'reporte_odf',83,84),(44,1,NULL,NULL,'Urds',86,99),(45,44,NULL,NULL,'index',87,88),(46,44,NULL,NULL,'add',89,90),(47,44,NULL,NULL,'view',91,92),(48,44,NULL,NULL,'edit',93,94),(49,44,NULL,NULL,'getByProvincia',95,96),(50,44,NULL,NULL,'delete',97,98),(51,1,NULL,NULL,'Users',100,121),(52,51,NULL,NULL,'initDB',101,102),(53,51,NULL,NULL,'index',103,104),(54,51,NULL,NULL,'view',105,106),(55,51,NULL,NULL,'add',107,108),(56,51,NULL,NULL,'edit',109,110),(57,51,NULL,NULL,'delete',111,112),(58,51,NULL,NULL,'login',113,114),(59,51,NULL,NULL,'logout',115,116),(60,51,NULL,NULL,'manage_usuario',117,118),(61,51,NULL,NULL,'change_password',119,120),(62,1,NULL,NULL,'AclExtras',122,123);
 /*!40000 ALTER TABLE `acos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +97,7 @@ CREATE TABLE `aros_acos` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `ARO_ACO_KEY` (`aro_id`,`aco_id`),
   KEY `idx_aco_id` (`aco_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +106,7 @@ CREATE TABLE `aros_acos` (
 
 LOCK TABLES `aros_acos` WRITE;
 /*!40000 ALTER TABLE `aros_acos` DISABLE KEYS */;
-INSERT INTO `aros_acos` VALUES (1,1,1,'1','1','1','1'),(2,1,14,'-1','-1','-1','-1'),(3,2,1,'1','1','1','1'),(4,2,4,'-1','-1','-1','-1'),(5,2,6,'-1','-1','-1','-1'),(6,2,9,'-1','-1','-1','-1'),(7,2,14,'-1','-1','-1','-1'),(8,2,19,'-1','-1','-1','-1'),(9,2,21,'-1','-1','-1','-1'),(10,2,22,'-1','-1','-1','-1'),(11,2,27,'-1','-1','-1','-1'),(12,2,29,'-1','-1','-1','-1'),(13,2,32,'-1','-1','-1','-1'),(14,2,36,'-1','-1','-1','-1'),(15,2,38,'-1','-1','-1','-1'),(16,2,40,'-1','-1','-1','-1'),(17,2,43,'-1','-1','-1','-1'),(18,2,45,'-1','-1','-1','-1'),(19,2,46,'-1','-1','-1','-1'),(20,2,47,'-1','-1','-1','-1');
+INSERT INTO `aros_acos` VALUES (1,1,1,'1','1','1','1'),(2,1,14,'-1','-1','-1','-1'),(3,2,1,'1','1','1','1'),(4,2,4,'-1','-1','-1','-1'),(5,2,6,'-1','-1','-1','-1'),(6,2,9,'-1','-1','-1','-1'),(7,2,14,'-1','-1','-1','-1'),(8,2,19,'-1','-1','-1','-1'),(9,2,21,'-1','-1','-1','-1'),(10,2,22,'-1','-1','-1','-1'),(11,2,27,'-1','-1','-1','-1'),(12,2,29,'-1','-1','-1','-1'),(13,2,32,'-1','-1','-1','-1'),(14,2,46,'-1','-1','-1','-1'),(15,2,48,'-1','-1','-1','-1'),(16,2,50,'-1','-1','-1','-1'),(17,2,53,'-1','-1','-1','-1'),(18,2,55,'-1','-1','-1','-1'),(19,2,56,'-1','-1','-1','-1'),(20,2,57,'-1','-1','-1','-1'),(21,2,34,'1','1','1','1');
 /*!40000 ALTER TABLE `aros_acos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -476,7 +478,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`,`groups_id`),
   KEY `fk_users_groups1_idx` (`groups_id`),
   CONSTRAINT `fk_users_groups1` FOREIGN KEY (`groups_id`) REFERENCES `groups` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -485,7 +487,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,1,'admin','$2a$10$yGiK6LzN/MbXdIoX5/qlaeSk/6tArWT3TyYN/VKFUaTkI8Vg7FL2W','1');
+INSERT INTO `users` VALUES (1,1,'admin','$2a$10$2peFsk71vR1I5vCbdSmpc.0TDI/BmTNN2Mxt5Y6knQCWZSFgPBDrm','1'),(2,2,'tecnico1','$2a$10$eGPQO9K2uueVYCHn0NPax.ivN5MGtsdWSnhObvZgIp961/nkn./bC','1');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -498,4 +500,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-01 18:27:07
+-- Dump completed on 2015-07-20 12:30:11
