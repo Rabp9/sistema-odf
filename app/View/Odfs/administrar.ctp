@@ -193,7 +193,8 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                 echo $this->Form->label("descripcion", "Descripción");
                 echo $this->Form->textarea("descripcion", array(
                     "div" => "form-group",
-                    "class" => "form-control"
+                    "class" => "form-control",
+                    "required" => true
                 ));
                 echo $this->Form->label("observacion", "Observación");
                 echo $this->Form->textarea("observacion", array(

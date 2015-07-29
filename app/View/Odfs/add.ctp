@@ -26,21 +26,24 @@
                     "class" => "form-control",
                     "autofocus" => "autofocus",
                     "options" => $departamentos,
-                    "empty" => "Selecciona uno"
+                    "empty" => "Selecciona uno",
+                    "required" => true
                 ));   
                 echo $this->Form->input("Provincia.id", array(
                     "label" => "Provincia",
                     "div" => "form-group",
                     "class" => "form-control",
                     "type" => "select",
-                    "disabled" => true
+                    "disabled" => true,
+                    "required" => true
                 ));
                 echo $this->Form->input("urds_id", array(
                     "label" => "URD",
                     "div" => "form-group",
                     "class" => "form-control",
                     "type" => "select",
-                    "disabled" => true
+                    "disabled" => true,
+                    "required" => true
                 ));
                 echo $this->Form->input("numero_cables", array(
                     "label" => "Número de cables",

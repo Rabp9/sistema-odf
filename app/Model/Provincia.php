@@ -18,7 +18,13 @@ class Provincia extends AppModel {
         )
     );
     
-    public $validate = array(
+    public $validate = array(       
+        "id" => array(
+            "notEmpty" => array(
+                "rule" => "notEmpty",
+                "message" => "No puede estar vacio"
+            ),
+        ),
         "departamentos_id" => array(
             "rule" => "notEmpty",
             "message" => "Debe seleccionar un Departamento"

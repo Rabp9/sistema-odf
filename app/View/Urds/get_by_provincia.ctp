@@ -6,6 +6,7 @@
         "div" => "form-group",
         "class" => "form-control",
         "options" => $urds,
-        "empty" => "Selecciona uno"
+        "empty" => "Selecciona uno",
+        "required" => true
     ));    
 ?>

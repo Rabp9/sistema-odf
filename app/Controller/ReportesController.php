@@ -6,8 +6,12 @@
  */
 App::import('Vendor', 'PHPExcel', array('file' => 'PHPExcel/PHPExcel.php'));
 
-class ReportesController extends AppController {  
-    
+class ReportesController extends AppController {
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow("departamentos_post", "provincias_post", "urds_post", "odfs_post", "reporte_odf");
+    }
+
     public $uses = array("Departamento", "Provincia", "Urd", "Odf");
     
     public $estiloTituloReporte = array(

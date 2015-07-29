@@ -18,6 +18,12 @@ class Urd extends AppModel {
     );
     
     public $validate = array(
+        "id" => array(
+            "notEmpty" => array(
+                "rule" => "notEmpty",
+                "message" => "No puede estar vacio"
+            ),
+        ),
         "provincias_id" => array(
             "rule" => "notEmpty",
             "message" => "Debe seleccionar una Provincia"

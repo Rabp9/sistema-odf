@@ -14,6 +14,12 @@ class Departamento extends AppModel {
     );
       
     public $validate = array(
+        "id" => array(
+            "notEmpty" => array(
+                "rule" => "notEmpty",
+                "message" => "No puede estar vacio"
+            ),
+        ),
         "descripcion" => array(
             "notEmpty" => array(
                 "rule" => "notEmpty",

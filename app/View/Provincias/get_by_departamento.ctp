@@ -7,6 +7,7 @@
         "class" => "form-control",
         "autofocus" => "autofocus",
         "options" => $provincias,
-        "empty" => "Selecciona uno"
+        "empty" => "Selecciona uno",
+        "required" => true
     ));    
 ?>

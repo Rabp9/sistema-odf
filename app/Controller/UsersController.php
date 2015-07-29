@@ -21,6 +21,13 @@ class UsersController extends AppController {
         $this->Acl->allow($group, 'controllers');
         $this->Acl->deny($group, 'controllers/Groups/add');
 
+        $this->Acl->allow($group, 'controllers/Reportes/');
+        $this->Acl->allow($group, 'controllers/Reportes/departamentos_post');
+        $this->Acl->allow($group, 'controllers/Reportes/provincias_post');
+        $this->Acl->allow($group, 'controllers/Reportes/urds_post');
+        $this->Acl->allow($group, 'controllers/Reportes/odfs_post');
+        $this->Acl->allow($group, 'controllers/Reportes/reporte_odf');
+        
         // Técnico
         $group->id = 2;
         $this->Acl->allow($group, 'controllers');
@@ -48,7 +55,12 @@ class UsersController extends AppController {
         $this->Acl->deny($group, 'controllers/Users/edit');
         $this->Acl->deny($group, 'controllers/Users/delete');
         
-        $this->Acl->allow($group, 'controllers/Reportes');
+        $this->Acl->allow($group, 'controllers/Reportes/');
+        $this->Acl->allow($group, 'controllers/Reportes/departamentos_post');
+        $this->Acl->allow($group, 'controllers/Reportes/provincias_post');
+        $this->Acl->allow($group, 'controllers/Reportes/urds_post');
+        $this->Acl->allow($group, 'controllers/Reportes/odfs_post');
+        $this->Acl->allow($group, 'controllers/Reportes/reporte_odf');
         
         // we add an exit to avoid an ugly "missing views" error message
         echo "all done";
