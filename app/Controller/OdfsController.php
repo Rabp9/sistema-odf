@@ -179,67 +179,6 @@ class OdfsController extends AppController {
                 }
                 $this->Session->setFlash(__("El ODF no ha sido registrado correctamente."), "flash_bootstrap");
             }
-            /*
-            if ($this->Odf->save($this->request->data)) {
-                $r = true;
-                $numeracion_be = 1;
-                $numeracion_bc = 72;
-                $numeracion_tubofibra = 1;
-                foreach($this->request->data["Tubofibra"] as $tubofibra) {
-                    $tubofibra["id"] = null;
-                    $tubofibra["odfs_id"] = $this->Odf->id;
-                    $tubofibra["numeracion"] = $numeracion_tubofibra;
-                    $numeracion_tubofibra++;
-                    if(!$this->Odf->Tubofibra->save($tubofibra)) {
-                        $r = false;
-                    }
-                    $n_be = $tubofibra["numero_cables"] == 8 ? 1 : $tubofibra["numero_cables"] / 16;
-                    $numeracion_conectorfibra = 1;
-                    $aux_cables = $tubofibra["numero_cables"];
-                    for($i = 0; $i < $n_be; $i++) {
-                        $be["tubofibras_id"] = $this->Odf->Tubofibra->id;
-                        $be["numero_cables"] = $aux_cables >= 16 ? 16 : 8;
-                        $aux_cables -= 16;
-                        $be["numeracion"] = $numeracion_be;
-                        $be["id"] = null;
-                        $numeracion_be++;
-                        if(!$this->Be->save($be)) {
-                            $r = false;
-                        }
-                        $n_bc = $this->request->data["Odf"]["tam_bc"] == 16 ? 1 : ($be["numero_cables"] % 16 == 8 ? 1 : 2);
-                        for($j = 0; $j < $n_bc; $j++) {
-                            $bc["bes_id"] = $this->Be->id;
-                            $bc["numero_cables"] = $this->request->data["Odf"]["tam_bc"] == 16 ? $be["numero_cables"] : 8;
-                            $bc["numeracion"] = $numeracion_bc;
-                            $bc["id"] = null;
-                            $numeracion_bc--;
-                            if(!$this->Bc->save($bc)) {
-                                $r = false;
-                            }
-                            
-                            for($k = 0; $k < ($this->request->data["Odf"]["tam_bc"] == 16 ? $bc["numero_cables"] : 8); $k++) {
-                                $conectorfibra["bcs_id"] = $this->Bc->id;
-                                $conectorfibra["tipos_id"] = 1; // LIBRE
-                                $conectorfibra["gestores_id"] = 1; // SIN GESTOR
-                                $conectorfibra["numeracion"] = $numeracion_conectorfibra;
-                                $numeracion_conectorfibra++;
-                                $conectorfibra["id"] = null;
-                                $conectorfibra["descripcion"] = "LIBRE";
-                                if(!$this->Conectorfibra->save($conectorfibra)) {
-                                    $r = false;
-                                }
-                            }
-                        }
-                    }
-                }
-                if($r) {
-                    $ds->commit();
-                    $this->Session->setFlash(__("El ODF ha sido registrado correctamente."), "flash_bootstrap");
-                    return $this->redirect(array('action' => 'index'));
-                }
-                $this->Session->setFlash(__("El ODF no ha sido registrado correctamente."), "flash_bootstrap");
-            }
-            */
         }
     }
      
