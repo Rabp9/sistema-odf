@@ -196,17 +196,15 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                     "class" => "form-control",
                     "required" => true
                 ));
+                echo $this->Form->input("gestor_ubicacion", array(
+                    "label" => "DE",
+                    "div" => "form-group",
+                    "class" => "form-control",
+                ));
                 echo $this->Form->label("observacion", "Observación");
                 echo $this->Form->textarea("observacion", array(
                     "div" => "form-group",
                     "class" => "form-control"
-                ));
-                echo $this->Form->input("tipos_id", array(
-                    "label" => "Tipo",
-                    "div" => "form-group",
-                    "class" => "form-control",
-                    "options" => $tipos,
-                    "empty" => "Seleccionar Tipo"
                 ));
                 echo $this->Form->input("intermedio", array(
                     "label" => "Intermedio",
@@ -214,15 +212,17 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                     "class" => "form-control"
                 ));
                 echo $this->Form->input("gestores_id", array(
-                    "label" => "Equipo de Red",
+                    "label" => "A",
                     "div" => "form-group",
                     "class" => "form-control",
                     "options" => $gestores
                 ));
-                echo $this->Form->input("gestor_ubicacion", array(
-                    "label" => "Ubicación de Gestor",
+                echo $this->Form->input("tipos_id", array(
+                    "label" => "Tipo",
                     "div" => "form-group",
                     "class" => "form-control",
+                    "options" => $tipos,
+                    "empty" => "Seleccionar Tipo"
                 ));
                 ?>
             </div>

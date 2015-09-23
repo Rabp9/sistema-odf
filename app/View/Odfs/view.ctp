@@ -230,8 +230,6 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
             </div>
             <div class="modal-body" id="dvCursos">
                 <?php
-                echo $this->Form->create("Conectorfibra");  
-                echo $this->Form->input("id", array("type" => "hidden"));
                 echo $this->Form->input("numeracion", array(
                     "label" => "Numeración",
                     "div" => "form-group",
@@ -239,45 +237,16 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                     "type" => "number",
                     "readonly" => true
                 ));
-                echo $this->Form->label("descripcion", "Descripción");
-                echo $this->Form->textarea("descripcion", array(
-                    "div" => "form-group",
-                    "class" => "form-control",
-                    "readonly" => true
-                ));
-                echo $this->Form->label("observacion", "Observación");
-                echo $this->Form->textarea("observacion", array(
-                    "div" => "form-group",
-                    "class" => "form-control",
-                    "readonly" => true
-                ));
-                echo $this->Form->input("tipos_id", array(
-                    "label" => "Tipo",
-                    "div" => "form-group",
-                    "class" => "form-control",
-                    "options" => $tipos,
-                    "disabled" => true
-                ));
-                echo $this->Form->input("intermedio", array(
-                    "label" => "Intermedio",
-                    "div" => "form-group",
-                    "class" => "form-control",
-                    "readonly" => true
-                ));
-                echo $this->Form->input("gestores_id", array(
-                    "label" => "Equipo de Red",
-                    "div" => "form-group",
-                    "class" => "form-control",
-                    "options" => $gestores,
-                    "disabled" => true
-                ));
-                echo $this->Form->input("gestor_ubicacion", array(
-                    "label" => "Ubicación de Gestor",
-                    "div" => "form-group",
-                    "class" => "form-control",
-                    "readonly" => true
-                ));
                 ?>
+                <label>Descripción</label>
+                <div style="border: ridge 1px; padding: 10px">
+                    <p id="pDescripcion"><b></b></p>
+                    <p><b>DE: </b><span id="spUbicacion"></span></p>
+                    <br/>
+                    <p><b>INTERMEDIO: </b><span id="spIntermedio"></span></p>
+                    <br/>
+                    <p><b>A: </b><span id="spGestor"></span></p>
+                <div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -290,6 +259,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
     $this->Html->scriptStart(array('inline' => false));
 ?>
     $('body').on('click', '.administrar', function() {
+        var gestores = <?php echo json_encode($gestores); ?>;
         var id = $(this).parent().find(".id").val();
         var numeracion = $(this).parent().find(".numeracion").val();
         var descripcion = $(this).parent().find(".descripcion").val();
@@ -298,14 +268,14 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
         var gestores_id = $(this).parent().find(".gestores_id").val();
         var intermedio = $(this).parent().find(".intermedio").val();
         var gestor_ubicacion = $(this).parent().find(".gestor_ubicacion").val();
-        $("#ConectorfibraId").val(id);
-        $("#ConectorfibraNumeracion").val(numeracion);
-        $("#ConectorfibraDescripcion").val(descripcion);
+
+        $("#numeracion").val(numeracion);
+        $("#pDescripcion b").html(descripcion);
         $("#ConectorfibraObservacion").val(observacion);
         $("#ConectorfibraTiposId").val(tipos_id);
-        $("#ConectorfibraGestoresId").val(gestores_id);
-        $("#ConectorfibraIntermedio").val(intermedio);
-        $("#ConectorfibraGestorUbicacion").val(gestor_ubicacion);
+        $("#spGestor").html(gestores[gestores_id]);
+        $("#spIntermedio").html(intermedio);
+        $("#spUbicacion").html(gestor_ubicacion);
     });
 <?php
     $this->Html->scriptEnd();
