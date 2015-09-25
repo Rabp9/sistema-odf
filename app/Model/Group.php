@@ -1,5 +1,3 @@
-<!-- File: /app/Model/Group.php -->
-
 <?php
 
     App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');

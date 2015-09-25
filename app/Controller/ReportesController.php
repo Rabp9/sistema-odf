@@ -751,7 +751,7 @@ class ReportesController extends AppController {
                                     $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment("D" . $inicio_cf)->getText()->createTextRun('Gestor:');
                                     $objCommentRichText->getFont()->setBold(true); 
                                     $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment("D" . $inicio_cf)->getText()->createTextRun("\r\n");
-                                    $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment("D" . $inicio_cf)->getText()->createTextRun($conector["Gestor"]["descripcion"]);
+                                    $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment("D" . $inicio_cf)->getText()->createTextRun($conector["gestor"]);
                                     $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment("D" . $inicio_cf)->getText()->createTextRun("\r\n");
 
                                     $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment("D" . $inicio_cf)->getText()->createTextRun('Ubicación del Gestor:');
@@ -1104,7 +1104,7 @@ class ReportesController extends AppController {
                                     $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun('Gestor:');
                                     $objCommentRichText->getFont()->setBold(true); 
                                     $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun("\r\n");
-                                    $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun($conector["Gestor"]["descripcion"]);
+                                    $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun($conector["gestor"]);
                                     $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun("\r\n");
 
                                     $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun('Ubicación del Gestor:');
@@ -1555,7 +1555,7 @@ class ReportesController extends AppController {
                                     $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun('Gestor:');
                                     $objCommentRichText->getFont()->setBold(true); 
                                     $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun("\r\n");
-                                    $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun($conector["Gestor"]["descripcion"]);
+                                    $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun($conector["gestor"]);
                                     $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun("\r\n");
 
                                     $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun('Ubicación del Gestor:');
@@ -2220,7 +2220,7 @@ class ReportesController extends AppController {
                                 $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun('Gestor:');
                                 $objCommentRichText->getFont()->setBold(true); 
                                 $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun("\r\n");
-                                $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun($conector["Gestor"]["descripcion"]);
+                                $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun($conector["gestor"]);
                                 $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun("\r\n");
 
                                 $objCommentRichText = $objPHPExcel->getActiveSheet()->getComment($celda)->getText()->createTextRun('Ubicación del Gestor:');

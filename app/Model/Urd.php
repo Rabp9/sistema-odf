@@ -38,13 +38,13 @@ class Urd extends AppModel {
                 "message"   => "Sólo letras permitidas"
             )
         ),
-        "posicion_x" => array(
-            "rule" => array("comparison", ">", 0),
-            "message" => "Debe ser un número positivo"
+        "latitud" => array(
+            "rule" => array("decimal"),
+            "message" => "La Latitud debe ser un número decimal"
         ),
-        "posicion_y" => array(
-            "rule" => array("comparison", ">", 0),
-            "message" => "Debe ser un número positivo"
+        "longitud" => array(
+            "rule" => array("decimal"),
+            "message" => "La Longitud debe ser un número decimal"
         ),
         "foto" => array(
             "rule" => array("extension", array("jpeg", "jpg", "png")),

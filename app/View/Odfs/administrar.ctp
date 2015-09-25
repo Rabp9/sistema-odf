@@ -42,7 +42,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                     <input class='descripcion' type='hidden' value='" . $conectorfibra1["descripcion"] . "'>\n
                     <input class='observacion' type='hidden' value='" . $conectorfibra1["observacion"] . "'>\n
                     <input class='tipos_id' type='hidden' value='" . $conectorfibra1["tipos_id"] . "'>\n
-                    <input class='gestores_id' type='hidden' value='" . $conectorfibra1["gestores_id"] . "'>\n
+                    <input class='gestor' type='hidden' value='" . $conectorfibra1["gestor"] . "'>\n
                     <input class='intermedio' type='hidden' value='" . $conectorfibra1["intermedio"] . "'>\n
                     <input class='gestor_ubicacion' type='hidden' value='" . $conectorfibra1["gestor_ubicacion"] . "'>\n
                     <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo" . $conectorfibra1["tipos_id"] . "' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra1["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra1["observacion"], 0, 15) . "</button>\n
@@ -53,7 +53,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                     <input class='descripcion' type='hidden' value='" . $conectorfibra2["descripcion"] . "'>\n
                     <input class='observacion' type='hidden' value='" . $conectorfibra2["observacion"] . "'>\n
                     <input class='tipos_id' type='hidden' value='" . $conectorfibra2["tipos_id"] . "'>\n
-                    <input class='gestores_id' type='hidden' value='" . $conectorfibra2["gestores_id"] . "'>\n
+                    <input class='gestor' type='hidden' value='" . $conectorfibra2["gestor"] . "'>\n
                     <input class='intermedio' type='hidden' value='" . $conectorfibra2["intermedio"] . "'>\n
                     <input class='gestor_ubicacion' type='hidden' value='" . $conectorfibra2["gestor_ubicacion"] . "'>\n
                     <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo" . $conectorfibra2["tipos_id"] . "' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra2["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra2["observacion"], 0, 15) . "</button>\n
@@ -109,7 +109,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                             <input class='descripcion' type='hidden' value='" . $conectorfibra1["descripcion"] . "'>\n
                             <input class='observacion' type='hidden' value='" . $conectorfibra1["observacion"] . "'>\n
                             <input class='tipos_id' type='hidden' value='" . $conectorfibra1["tipos_id"] . "'>\n
-                            <input class='gestores_id' type='hidden' value='" . $conectorfibra1["gestores_id"] . "'>\n
+                            <input class='gestor' type='hidden' value='" . $conectorfibra1["gestor"] . "'>\n
                             <input class='intermedio' type='hidden' value='" . $conectorfibra1["intermedio"] . "'>\n
                             <input class='gestor_ubicacion' type='hidden' value='" . $conectorfibra1["gestor_ubicacion"] . "'>\n
                             <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo" . $conectorfibra1["tipos_id"] . "' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra1["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra1["observacion"], 0, 15) . "</button>\n
@@ -120,7 +120,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                             <input class='descripcion' type='hidden' value='" . $conectorfibra2["descripcion"] . "'>\n
                             <input class='observacion' type='hidden' value='" . $conectorfibra2["observacion"] . "'>\n
                             <input class='tipos_id' type='hidden' value='" . $conectorfibra2["tipos_id"] . "'>\n
-                            <input class='gestores_id' type='hidden' value='" . $conectorfibra2["gestores_id"] . "'>\n
+                            <input class='gestor' type='hidden' value='" . $conectorfibra2["gestor"] . "'>\n
                             <input class='intermedio' type='hidden' value='" . $conectorfibra2["intermedio"] . "'>\n
                             <input class='gestor_ubicacion' type='hidden' value='" . $conectorfibra2["gestor_ubicacion"] . "'>\n
                             <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo" . $conectorfibra2["tipos_id"] . "' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra2["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra2["observacion"], 0, 15) . "</button>\n
@@ -211,11 +211,10 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                     "div" => "form-group",
                     "class" => "form-control"
                 ));
-                echo $this->Form->input("gestores_id", array(
+                echo $this->Form->input("gestor", array(
                     "label" => "A",
                     "div" => "form-group",
                     "class" => "form-control",
-                    "options" => $gestores
                 ));
                 echo $this->Form->input("tipos_id", array(
                     "label" => "Tipo",
@@ -243,7 +242,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
         var descripcion = $(this).parent().find(".descripcion").val();
         var observacion = $(this).parent().find(".observacion").val();
         var tipos_id = $(this).parent().find(".tipos_id").val();
-        var gestores_id = $(this).parent().find(".gestores_id").val();
+        var gestor = $(this).parent().find(".gestor").val();
         var intermedio = $(this).parent().find(".intermedio").val();
         var gestor_ubicacion = $(this).parent().find(".gestor_ubicacion").val();
         $("#ConectorfibraId").val(id);
@@ -251,7 +250,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
         $("#ConectorfibraDescripcion").val(descripcion);
         $("#ConectorfibraObservacion").val(observacion);
         $("#ConectorfibraTiposId").val(tipos_id);
-        $("#ConectorfibraGestoresId").val(gestores_id);
+        $("#ConectorfibraGestor").val(gestor);
         $("#ConectorfibraIntermedio").val(intermedio);
         $("#ConectorfibraGestorUbicacion").val(gestor_ubicacion);
         var grados_id = $("#ConectorfibraGestoresId").val();
@@ -263,9 +262,9 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
     $('body').on('click', '#aceptar', function() {
         $("#ConectorfibraAdministrarForm").submit();
     });
-    $('body').on('change', '#ConectorfibraGestoresId', function() {
-        var grados_id = $("#ConectorfibraGestoresId").val();
-        if(grados_id == 1)
+    $('body').on('change', '#ConectorfibraGestor', function() {
+        var gestor = $("#ConectorfibraGestoresId").val();
+        if(gestor == "")
             $("#ConectorfibraGestorUbicacion").attr("disabled", true);
         else
             $("#ConectorfibraGestorUbicacion").attr("disabled", false);

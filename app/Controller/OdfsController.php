@@ -198,10 +198,6 @@ class OdfsController extends AppController {
         $this->set("tipos", $this->Conectorfibra->Tipo->find("list", array(
             "fields" => array("id", "descripcion")
         )));
-                
-        $this->set("gestores", $this->Conectorfibra->Gestor->find("list", array(
-            "fields" => array("id", "descripcion")
-        )));
         
         $this->set("notas", $this->Odf->Nota->find("all", array(
             "conditions" => array("odfs_id" => $odf["Odf"]["id"])
@@ -236,18 +232,14 @@ class OdfsController extends AppController {
         $this->set("tipos", $this->Conectorfibra->Tipo->find("list", array(
             "fields" => array("id", "descripcion")
         )));
-        
-        $this->set("gestores", $this->Conectorfibra->Gestor->find("list", array(
-            "fields" => array("id", "descripcion")
-        )));
-        
+       
         if($this->request->is(array("post", "put"))) {
             $ds = $this->Conectorfibra->getDataSource();
             $ds->begin();
             $idConectorfibra = $this->request->data["Conectorfibra"]["id"];
             $this->Conectorfibra->id = $idConectorfibra;
             $this->Conectorfibra->read();
-            if($this->request->data["Conectorfibra"]["gestores_id"] == 1) {
+            if($this->request->data["Conectorfibra"]["gestor"] == "") {
                 $this->request->data["Conectorfibra"]["gestor_ubicacion"] = "";
             }
             if ($this->Conectorfibra->save($this->request->data)) {

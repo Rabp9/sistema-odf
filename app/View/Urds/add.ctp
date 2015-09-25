@@ -31,14 +31,12 @@
     echo $this->Form->input("latitud", array(
         "label" => "Latitud",
         "div" => "form-group",
-        "class" => "form-control",
-        "type" => "number"
+        "class" => "form-control"
     ));
     echo $this->Form->input("longitud", array(
         "label" => "Longitud",
         "div" => "form-group",
-        "class" => "form-control",
-        "type" => "number"
+        "class" => "form-control"
     ));
     echo $this->Form->input("direccion", array(
         "label" => "Dirección",

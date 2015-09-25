@@ -11,9 +11,6 @@ class Conectorfibra extends AppModel {
         ),
         "Tipo" => array(
             "foreignKey" => "tipos_id"
-        ),
-        "Gestor" => array(
-            "foreignKey" => "gestores_id"
         )
     );
     

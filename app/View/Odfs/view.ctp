@@ -42,7 +42,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                     <input class='descripcion' type='hidden' value='" . $conectorfibra1["descripcion"] . "'>\n
                     <input class='observacion' type='hidden' value='" . $conectorfibra1["observacion"] . "'>\n
                     <input class='tipos_id' type='hidden' value='" . $conectorfibra1["tipos_id"] . "'>\n
-                    <input class='gestores_id' type='hidden' value='" . $conectorfibra1["gestores_id"] . "'>\n
+                    <input class='gestor' type='hidden' value='" . $conectorfibra1["gestor"] . "'>\n
                     <input class='intermedio' type='hidden' value='" . $conectorfibra1["intermedio"] . "'>\n
                     <input class='gestor_ubicacion' type='hidden' value='" . $conectorfibra1["gestor_ubicacion"] . "'>\n
                     <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo" . $conectorfibra1["tipos_id"] . "' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra1["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra1["observacion"], 0, 15) . "</button>\n
@@ -53,7 +53,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                     <input class='descripcion' type='hidden' value='" . $conectorfibra2["descripcion"] . "'>\n
                     <input class='observacion' type='hidden' value='" . $conectorfibra2["observacion"] . "'>\n
                     <input class='tipos_id' type='hidden' value='" . $conectorfibra2["tipos_id"] . "'>\n
-                    <input class='gestores_id' type='hidden' value='" . $conectorfibra2["gestores_id"] . "'>\n
+                    <input class='gestor' type='hidden' value='" . $conectorfibra2["gestor"] . "'>\n
                     <input class='intermedio' type='hidden' value='" . $conectorfibra2["intermedio"] . "'>\n
                     <input class='gestor_ubicacion' type='hidden' value='" . $conectorfibra2["gestor_ubicacion"] . "'>\n
                     <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo" . $conectorfibra2["tipos_id"] . "' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra2["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra2["observacion"], 0, 15) . "</button>\n
@@ -109,7 +109,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                             <input class='descripcion' type='hidden' value='" . $conectorfibra1["descripcion"] . "'>\n
                             <input class='observacion' type='hidden' value='" . $conectorfibra1["observacion"] . "'>\n
                             <input class='tipos_id' type='hidden' value='" . $conectorfibra1["tipos_id"] . "'>\n
-                            <input class='gestores_id' type='hidden' value='" . $conectorfibra1["gestores_id"] . "'>\n
+                            <input class='gestor' type='hidden' value='" . $conectorfibra1["gestor"] . "'>\n
                             <input class='intermedio' type='hidden' value='" . $conectorfibra1["intermedio"] . "'>\n
                             <input class='gestor_ubicacion' type='hidden' value='" . $conectorfibra1["gestor_ubicacion"] . "'>\n
                             <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo" . $conectorfibra1["tipos_id"] . "' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra1["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra1["observacion"], 0, 15) . "</button>\n
@@ -120,7 +120,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
                             <input class='descripcion' type='hidden' value='" . $conectorfibra2["descripcion"] . "'>\n
                             <input class='observacion' type='hidden' value='" . $conectorfibra2["observacion"] . "'>\n
                             <input class='tipos_id' type='hidden' value='" . $conectorfibra2["tipos_id"] . "'>\n
-                            <input class='gestores_id' type='hidden' value='" . $conectorfibra2["gestores_id"] . "'>\n
+                            <input class='gestor' type='hidden' value='" . $conectorfibra2["gestor"] . "'>\n
                             <input class='intermedio' type='hidden' value='" . $conectorfibra2["intermedio"] . "'>\n
                             <input class='gestor_ubicacion' type='hidden' value='" . $conectorfibra2["gestor_ubicacion"] . "'>\n
                             <button type='button' class='btn btn-primary administrar conectorfibra-descripcion tipo" . $conectorfibra2["tipos_id"] . "' data-toggle='modal' data-target='#mdlDetalleConectorFibra'>" . substr($conectorfibra2["descripcion"], 0, 30) . "<hr>" . substr($conectorfibra2["observacion"], 0, 15) . "</button>\n
@@ -259,13 +259,12 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
     $this->Html->scriptStart(array('inline' => false));
 ?>
     $('body').on('click', '.administrar', function() {
-        var gestores = <?php echo json_encode($gestores); ?>;
         var id = $(this).parent().find(".id").val();
         var numeracion = $(this).parent().find(".numeracion").val();
         var descripcion = $(this).parent().find(".descripcion").val();
         var observacion = $(this).parent().find(".observacion").val();
         var tipos_id = $(this).parent().find(".tipos_id").val();
-        var gestores_id = $(this).parent().find(".gestores_id").val();
+        var gestor = $(this).parent().find(".gestor").val();
         var intermedio = $(this).parent().find(".intermedio").val();
         var gestor_ubicacion = $(this).parent().find(".gestor_ubicacion").val();
 
@@ -273,7 +272,7 @@ URD: <?php echo $odf["Urd"]["descripcion"]; ?>, ODF N° <?php echo $odf["Odf"]["
         $("#pDescripcion b").html(descripcion);
         $("#ConectorfibraObservacion").val(observacion);
         $("#ConectorfibraTiposId").val(tipos_id);
-        $("#spGestor").html(gestores[gestores_id]);
+        $("#spGestor").html(gestor);
         $("#spIntermedio").html(intermedio);
         $("#spUbicacion").html(gestor_ubicacion);
     });

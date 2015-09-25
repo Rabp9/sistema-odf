@@ -1,5 +1,3 @@
-<!-- File: /app/Model/User.php -->
-
 <?php
 
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
